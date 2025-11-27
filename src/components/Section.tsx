@@ -18,6 +18,20 @@ export function Section(props: any) {
 
                     <props.form.Field
                         name={props.id}
+                        defaultValue={false}
+                        validators={{
+                            onMount: ({ value }) => {
+                                if (
+                                    props.type === "Options" &&
+                                    typeof value !== "boolean"
+                                ) {
+                                    return `${props.id} is required`
+                                }
+
+                                return undefined
+                            },
+
+                        }}
                     >
                         {
                             field => (
